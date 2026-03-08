@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}ITechMind – Specjalista AI i Developer{% endblock %}
+
+{% block content %}
+
+<section class="text-center py-5">
+  <div class="container">
+    <h1 class="display-4 fw-bold">Cześć! Tu ITechMind</h1>
+    <p class="lead text-secondary">Specjalista AI & Python / Django Developer</p>
+    <p>Pomagam tworzyć nowoczesne systemy IT i rozwiązania oparte na sztucznej inteligencji.</p>
+    <a href="#portfolio" class="btn btn-primary btn-lg">Zobacz projekty</a>
+  </div>
+</section>
+
+<section id="about" class="py-5">
+  <div class="container">
+    <h2 class="mb-4 text-center">O mnie</h2>
+    <p>Cześć! Nazywam się… (tu krótki opis doświadczenia, kompetencji i wartości dla klienta)</p>
+  </div>
+</section>
+
+<section id="services" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="mb-4 text-center">Co robię</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <h5 class="card-title">AI & ML Consulting</h5>
+            <p class="card-text">Konsultacje, prototypy i strategie AI dopasowane do biznesu.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <h5 class="card-title">Backend (Python/Django)</h5>
+            <p class="card-text">Budowa backendów i API o wysokiej jakości i bezpieczeństwie.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <h5 class="card-title">Web Apps & Automatyzacje</h5>
+            <p class="card-text">Aplikacje webowe, integracje i systemy automatyzujące pracę.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="py-5">
+  <div class="container">
+    <h2 class="mb-4 text-center">Portfolio</h2>
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100">
+          <img src="{% static 'img/project-1.jpg' %}" class="card-img-top" alt="Projekt 1">
+          <div class="card-body">
+            <h5 class="card-title">Projekt A</h5>
+            <p class="card-text">Krótki opis projektu, technologia, rezultat.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

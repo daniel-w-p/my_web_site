@@ -1,0 +1,15 @@
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333; }
+    .container { max-width: 800px; margin: auto; padding: 20px; }
+    header { text-align: center; padding-bottom: 20px; border-bottom: 2px solid #eee; }
+    header img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; }
+    header h1 { margin: 10px 0 0; font-size: 2em; }
+    header p { margin: 5px 0; font-size: 1em; color: #777; }
+
+    section { margin-top: 30px; }
+    .section-title { font-size: 1.3em; font-weight: bold; border-bottom: 2px solid #ddd; margin-bottom: 10px; padding-bottom: 5px; }
+    .section-content { margin-top: 10px; }
+    .experience { margin-bottom: 15px; }
+    .experience .role { font-weight: bold; font-size: 1.1em; }
+    .experience .company { font-style: italic; color: #555; }
+    .skills ul { list-style: none; padding: 0; }
+    .skills li { display: inline-block; background: #f3f3f3; padding: 5px 10px; border-radius: 5px; margin: 4px; }
