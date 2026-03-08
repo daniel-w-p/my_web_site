@@ -19,7 +19,6 @@ dist/
 
 # Django
 mysite/settings.py
-mysite/urls.py
 db.sqlite3
 db.sqlite3-journal
 *.log
