@@ -1,22 +1,70 @@
 {% extends "base.html" %}
+{% load static %}
+{% load site_text %}
 
-{% block title %}Kontakt{% endblock %}
+{% block title %}{% site_text "contact.page_title" "Contact" %}{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-
   {% if saved %}
     <div class="alert alert-success">
-      Twoja wiadomość została zapisana! Dziękuję za kontakt 😊
+      {% site_text "contact.success" "Your message has been saved. Thank you for reaching out." %}
     </div>
   {% endif %}
 
-  <h1>Skontaktuj się</h1>
-  <form method="post">
+  <h1>{% site_text "contact.heading" "Get in touch" %}</h1>
+  <form method="post" novalidate>
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Wyślij</button>
+
+    <div class="mb-3">
+      <label for="{{ form.name.id_for_label }}" class="form-label">{% site_text "contact.label_name" "Name" %}</label>
+      {{ form.name }}
+      {% if form.name.errors %}
+        <div class="text-danger small">{{ form.name.errors|striptags }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="{{ form.email.id_for_label }}" class="form-label">{% site_text "contact.label_email" "Email" %}</label>
+      {{ form.email }}
+      {% if form.email.errors %}
+        <div class="text-danger small">{{ form.email.errors|striptags }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="{{ form.message.id_for_label }}" class="form-label">{% site_text "contact.label_message" "Message" %}</label>
+      {{ form.message }}
+      {% if form.message.errors %}
+        <div class="text-danger small">{{ form.message.errors|striptags }}</div>
+      {% endif %}
+    </div>
+
+    {{ form.hp_field }}
+
+    <button type="submit" class="btn hero-cta btn-lg">{% site_text "contact.submit" "Send" %}</button>
   </form>
 
+  <section id="quick-contact-contact" class="py-5">
+    <h2 class="mb-4 text-center">{% site_text "quick_contact.title" "Quick contact" %}</h2>
+    <div class="quick-contact-grid">
+      <a class="quick-contact-item" href="mailto:{% site_text 'quick_contact.email_href' 'kontakt@itechmind.pl' %}">
+        <img src="{% static 'img/email.svg' %}" alt="Email" class="contact-icon">
+        <span>{% site_text "quick_contact.email_label" "Email" %}</span>
+      </a>
+      <a class="quick-contact-item" href="tel:{% site_text 'quick_contact.phone_href' '+48123456789' %}">
+        <img src="{% static 'img/phone.svg' %}" alt="Phone" class="contact-icon">
+        <span>{% site_text "quick_contact.phone_label" "Phone" %}</span>
+      </a>
+      <a class="quick-contact-item" href="{% site_text 'quick_contact.github_href' 'https://github.com/your-profile' %}" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/github.svg' %}" alt="GitHub" class="contact-icon">
+        <span>GitHub</span>
+      </a>
+      <a class="quick-contact-item" href="{% site_text 'quick_contact.linkedin_href' 'https://www.linkedin.com/in/your-profile/' %}" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/linkedin.svg' %}" alt="LinkedIn" class="contact-icon">
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </section>
 </div>
 {% endblock %}

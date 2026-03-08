@@ -1,50 +1,51 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}ITechMind – Specjalista AI i Developer{% endblock %}
+{% load site_text %}
+
+{% block title %}{% site_text "index.meta_title" "ITechMind - AI Specialist and Developer" %}{% endblock %}
 
 {% block content %}
-
 <section class="text-center py-5">
   <div class="container">
-    <h1 class="display-4 fw-bold">Cześć! Tu ITechMind</h1>
-    <p class="lead text-secondary">Specjalista AI & Python / Django Developer</p>
-    <p>Pomagam tworzyć nowoczesne systemy IT i rozwiązania oparte na sztucznej inteligencji.</p>
-    <a href="#portfolio" class="btn btn-primary btn-lg">Zobacz projekty</a>
+    <h1 class="display-4 fw-bold">{% site_text "index.hero_title" "Hello! This is ITechMind" %}</h1>
+    <p class="lead text-secondary">{% site_text "index.hero_subtitle" "AI Specialist and Python / Django Developer" %}</p>
+    <p>{% site_text "index.hero_description" "I help build modern IT systems and AI-powered solutions." %}</p>
+    <a href="{% url 'portfolio' %}" class="btn hero-cta btn-lg">{% site_text "index.hero_cta" "See projects" %}</a>
   </div>
 </section>
 
 <section id="about" class="py-5">
   <div class="container">
-    <h2 class="mb-4 text-center">O mnie</h2>
-    <p>Cześć! Nazywam się… (tu krótki opis doświadczenia, kompetencji i wartości dla klienta)</p>
+    <h2 class="mb-4 text-center">{% site_text "index.about_title" "About me" %}</h2>
+    <p>{% site_text "index.about_body" "Short description of your experience, strengths and value for clients." %}</p>
   </div>
 </section>
 
-<section id="services" class="py-5 bg-light">
+<section id="services" class="py-5 services-section">
   <div class="container">
-    <h2 class="mb-4 text-center">Co robię</h2>
+    <h2 class="mb-4 text-center">{% site_text "index.services_title" "What I do" %}</h2>
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="card h-100 text-center">
+        <div class="card h-100 text-center service-card">
           <div class="card-body">
-            <h5 class="card-title">AI & ML Consulting</h5>
-            <p class="card-text">Konsultacje, prototypy i strategie AI dopasowane do biznesu.</p>
+            <h5 class="card-title">{% site_text "index.service_1_title" "AI and ML Consulting" %}</h5>
+            <p class="card-text">{% site_text "index.service_1_body" "Consulting, prototypes and practical AI strategy for business." %}</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card h-100 text-center">
+        <div class="card h-100 text-center service-card">
           <div class="card-body">
-            <h5 class="card-title">Backend (Python/Django)</h5>
-            <p class="card-text">Budowa backendów i API o wysokiej jakości i bezpieczeństwie.</p>
+            <h5 class="card-title">{% site_text "index.service_2_title" "Backend (Python/Django)" %}</h5>
+            <p class="card-text">{% site_text "index.service_2_body" "Building high-quality, secure backends and APIs." %}</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card h-100 text-center">
+        <div class="card h-100 text-center service-card">
           <div class="card-body">
-            <h5 class="card-title">Web Apps & Automatyzacje</h5>
-            <p class="card-text">Aplikacje webowe, integracje i systemy automatyzujące pracę.</p>
+            <h5 class="card-title">{% site_text "index.service_3_title" "Web Apps and Automation" %}</h5>
+            <p class="card-text">{% site_text "index.service_3_body" "Web applications, integrations and workflow automation." %}</p>
           </div>
         </div>
       </div>
@@ -52,23 +53,27 @@
   </div>
 </section>
 
-<section id="portfolio" class="py-5">
+<section id="quick-contact" class="py-5">
   <div class="container">
-    <h2 class="mb-4 text-center">Portfolio</h2>
-    <div class="row g-4">
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100">
-          <img src="{% static 'img/project-1.jpg' %}" class="card-img-top" alt="Projekt 1">
-          <div class="card-body">
-            <h5 class="card-title">Projekt A</h5>
-            <p class="card-text">Krótki opis projektu, technologia, rezultat.</p>
-          </div>
-        </div>
-      </div>
-
+    <h2 class="mb-4 text-center">{% site_text "quick_contact.title" "Quick contact" %}</h2>
+    <div class="quick-contact-grid">
+      <a class="quick-contact-item" href="mailto:{% site_text 'quick_contact.email_href' 'kontakt@itechmind.pl' %}">
+        <img src="{% static 'img/email.svg' %}" alt="Email" class="contact-icon">
+        <span>{% site_text "quick_contact.email_label" "Email" %}</span>
+      </a>
+      <a class="quick-contact-item" href="tel:{% site_text 'quick_contact.phone_href' '+48123456789' %}">
+        <img src="{% static 'img/phone.svg' %}" alt="Phone" class="contact-icon">
+        <span>{% site_text "quick_contact.phone_label" "Phone" %}</span>
+      </a>
+      <a class="quick-contact-item" href="{% site_text 'quick_contact.github_href' 'https://github.com/your-profile' %}" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/github.svg' %}" alt="GitHub" class="contact-icon">
+        <span>GitHub</span>
+      </a>
+      <a class="quick-contact-item" href="{% site_text 'quick_contact.linkedin_href' 'https://www.linkedin.com/in/your-profile/' %}" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/linkedin.svg' %}" alt="LinkedIn" class="contact-icon">
+        <span>LinkedIn</span>
+      </a>
     </div>
   </div>
 </section>
-
 {% endblock %}

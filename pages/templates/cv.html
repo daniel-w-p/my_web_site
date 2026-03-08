@@ -1,41 +1,55 @@
+{% extends "base.html" %}
 {% load static %}
-<div class="container">
-    <header>
-        <img src="{% static person.photo.url %}" alt="Zdjęcie {{ person.first_name }}">
-        <link rel="stylesheet" href="{% static 'css/cv.css' %}">
-        <h1>{{ person.first_name }} {{ person.last_name }}</h1>
-        <p>{{ person.title }}</p>
-        <p>{{ person.email }} • {{ person.phone }}</p>
-        <p>{{ person.location }}</p>
-    </header>
+{% load site_text %}
 
-    {% for section in sections %}
-        <section>
-            <div class="section-title">{{ section.title }}</div>
-            <div class="section-content">
-                {% if section.type == "experience" %}
-                    {% for item in section.experience_items.all %}
-                        <div class="experience">
-                            <div class="role">{{ item.position }}</div>
-                            <div class="company">
-                                {{ item.company }} | {{ item.start_date }} – {{ item.end_date|default_if_none:"dziś" }}
+{% block title %}{% site_text "cv.page_title" "CV" %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/cv.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="cv-page">
+    <div class="cv-container">
+        <header class="cv-header">
+            {% if person.photo %}
+                <img src="{{ person.photo.url }}" alt="{{ person.first_name }} {{ person.last_name }}">
+            {% endif %}
+
+            <h1>{{ person.first_name }} {{ person.last_name }}</h1>
+            <p>{{ person.localized_title }}</p>
+            <p><img src="{% static 'img/email.svg' %}" alt="Email" class="contact-icon"> {{ person.email }} <img src="{% static 'img/phone.svg' %}" alt="Phone" class="contact-icon"> {{ person.phone }}</p>
+            <p>{{ person.localized_location }}</p>
+        </header>
+
+        {% for section in sections %}
+            <section class="cv-section">
+                <div class="section-title">{{ section.localized_title }}</div>
+                <div class="section-content">
+                    {% if section.type == "experience" %}
+                        {% for item in section.experience_items.all %}
+                            <div class="experience">
+                                <div class="role">{{ item.localized_position }}</div>
+                                <div class="company">
+                                    {{ item.company }} | {{ item.start_date }} - {{ item.end_date|default_if_none:today_label }}
+                                </div>
+                                <p>{{ item.localized_description|linebreaksbr }}</p>
                             </div>
-                            <p>{{ item.description|linebreaksbr }}</p>
-                        </div>
-                    {% endfor %}
-                {% elif section.type == "skills" %}
-                    <div class="skills">
-                        <ul>
-                        {% for skill in section.skills_list %}
-                            <li>{{ skill }}</li>
                         {% endfor %}
-                        </ul>
-                    </div>
-                {% else %}
-                    {{ section.content|safe }}
-                {% endif %}
-            </div>
-        </section>
-    {% endfor %}
-
+                    {% elif section.type == "skills" %}
+                        <div class="skills">
+                            <ul>
+                            {% for skill in section.skills_list %}
+                                <li>{{ skill }}</li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    {% else %}
+                        {{ section.localized_content|safe }}
+                    {% endif %}
+                </div>
+            </section>
+        {% endfor %}
+    </div>
 </div>
+{% endblock %}

@@ -1,15 +1,77 @@
-body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333; }
-    .container { max-width: 800px; margin: auto; padding: 20px; }
-    header { text-align: center; padding-bottom: 20px; border-bottom: 2px solid #eee; }
-    header img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; }
-    header h1 { margin: 10px 0 0; font-size: 2em; }
-    header p { margin: 5px 0; font-size: 1em; color: #777; }
+.cv-page {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
 
-    section { margin-top: 30px; }
-    .section-title { font-size: 1.3em; font-weight: bold; border-bottom: 2px solid #ddd; margin-bottom: 10px; padding-bottom: 5px; }
-    .section-content { margin-top: 10px; }
-    .experience { margin-bottom: 15px; }
-    .experience .role { font-weight: bold; font-size: 1.1em; }
-    .experience .company { font-style: italic; color: #555; }
-    .skills ul { list-style: none; padding: 0; }
-    .skills li { display: inline-block; background: #f3f3f3; padding: 5px 10px; border-radius: 5px; margin: 4px; }
+.cv-page .cv-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.cv-page .cv-header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+.cv-page .cv-header .cv-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.cv-page .cv-header h1 {
+    margin: 10px 0 0;
+    font-size: 2em;
+}
+
+.cv-page .cv-header p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #777;
+}
+
+.cv-page .cv-section {
+    margin-top: 30px;
+}
+
+.cv-page .section-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+.cv-page .section-content {
+    margin-top: 10px;
+}
+
+.cv-page .experience {
+    margin-bottom: 15px;
+}
+
+.cv-page .experience .role {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.cv-page .experience .company {
+    font-style: italic;
+    color: #555;
+}
+
+.cv-page .skills ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cv-page .skills li {
+    display: inline-block;
+    background: #f3f3f3;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 4px;
+}

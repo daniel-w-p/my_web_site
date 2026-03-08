@@ -1,35 +1,36 @@
 {% extends 'base.html' %}
+{% load site_text %}
 
-{% block title %}Portfolio{% endblock %}
+{% block title %}{% site_text "portfolio.page_title" "Portfolio" %}{% endblock %}
 
 {% block content %}
 <section class="py-5">
   <div class="container">
-    <h2 class="mb-4 text-center">Portfolio</h2>
+    <h2 class="mb-4 text-center">{% site_text "portfolio.heading" "Portfolio" %}</h2>
 
     <div class="row g-4">
       {% for project in projects %}
         <div class="col-md-6 col-lg-4">
-          <div class="card h-100 shadow-sm">
+          <div class="card h-100 shadow-sm portfolio-card">
             {% if project.image %}
-              <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+              <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.localized_title }}">
             {% endif %}
             <div class="card-body">
-              <h5 class="card-title">{{ project.title }}</h5>
-              <p class="card-text">{{ project.description }}</p>
+              <h5 class="card-title">{{ project.localized_title }}</h5>
+              <p class="card-text">{{ project.localized_description }}</p>
               {% if project.project_url %}
-                <a href="{{ project.project_url }}" class="btn btn-sm btn-primary" target="_blank">Zobacz projekt</a>
+                <a href="{{ project.project_url }}" class="btn btn-sm btn-tech" target="_blank" rel="noopener noreferrer">{% site_text "portfolio.cta_project" "View project" %}</a>
               {% endif %}
             </div>
-            {% if project.technologies %}
+            {% if project.localized_technologies %}
               <div class="card-footer text-muted">
-                {{ project.technologies }}
+                {{ project.localized_technologies }}
               </div>
             {% endif %}
           </div>
         </div>
       {% empty %}
-        <p class="text-center">Brak projektów w portfolio.</p>
+        <p class="text-center">{% site_text "portfolio.empty" "No portfolio projects yet." %}</p>
       {% endfor %}
     </div>
 
