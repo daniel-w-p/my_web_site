@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load site_text %}
 
 {% block title %}{% site_text "portfolio.page_title" "Portfolio" %}{% endblock %}
@@ -6,14 +7,26 @@
 {% block content %}
 <section class="py-5">
   <div class="container">
-    <h2 class="mb-4 text-center">{% site_text "portfolio.heading" "Portfolio" %}</h2>
+    <h1 class="mb-4 text-center">{% site_text "portfolio.heading" "Portfolio" %}</h1>
 
-    <div class="row g-4">
+    <div id="portfolio-grid" class="row g-4 portfolio-grid">
       {% for project in projects %}
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 portfolio-item">
           <div class="card h-100 shadow-sm portfolio-card">
             {% if project.image %}
-              <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.localized_title }}">
+              {% with img_name=project.image.name %}
+              <div class="portfolio-image-wrap">
+                <img
+                  src="{% static img_name %}"
+                  class="card-img-top portfolio-preview"
+                  alt="{{ project.localized_title }}"
+                  tabindex="0"
+                  role="button"
+                  aria-label="Expand image: {{ project.localized_title }}"
+                >
+                <button type="button" class="portfolio-close" aria-label="Close expanded image">X</button>
+              </div>
+              {% endwith %}
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ project.localized_title }}</h5>

@@ -1,0 +1,35 @@
+{% load static %}
+{% load site_text %}
+
+<h2 class="mb-4 text-center">{% site_text "quick_contact.title" "Quick contact" %}</h2>
+<div class="quick-contact-grid">
+  <a class="quick-contact-item" href="mailto:{% site_text 'quick_contact.email_href' 'daniel.poloczek.it@gmail.com' %}">
+    <img src="{% static 'img/email.svg' %}" alt="Email" class="contact-icon">
+    <span class="quick-contact-text">
+      <span class="quick-contact-label">{% site_text "quick_contact.email_label" "Email" %}</span>
+      <span class="quick-contact-detail">{% site_text "quick_contact.email_display" "daniel.poloczek.it@gmail.com" %}</span>
+    </span>
+  </a>
+  <a class="quick-contact-item" href="#">
+    <img src="{% static 'img/phone.svg' %}" alt="Phone" class="contact-icon">
+    <span class="quick-contact-text">
+      <span class="quick-contact-label">{% site_text "quick_contact.phone_label" "Phone" %}</span>
+      <span class="quick-contact-detail">{% site_text "quick_contact.phone_display" "+48 516 050 855" %}</span>
+    </span>
+  </a>
+  <a class="quick-contact-item" href="{% site_text 'quick_contact.github_href' 'https://github.com/daniel-w-p' %}" target="_blank" rel="noopener noreferrer">
+    <img src="{% static 'img/github.svg' %}" alt="GitHub" class="contact-icon">
+    <span class="quick-contact-text">
+      <span class="quick-contact-label">GitHub</span>
+      <span class="quick-contact-detail">https://github.com/daniel-w-p</span>
+    </span>
+  </a>
+  <a class="quick-contact-item" href="{% site_text 'quick_contact.linkedin_href' 'https://www.linkedin.com/in/daniel-poloczek-785161185/' %}" target="_blank" rel="noopener noreferrer">
+    <img src="{% static 'img/linkedin.svg' %}" alt="LinkedIn" class="contact-icon">
+    <span class="quick-contact-text">
+      <span class="quick-contact-label">LinkedIn</span>
+      <span class="quick-contact-detail">in/daniel-poloczek-785161185/</span>
+    </span>
+  </a>
+</div>
+

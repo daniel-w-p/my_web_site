@@ -14,7 +14,31 @@ from pages.utils import get_site_text
 
 
 def index(request):
-    return render(request, "index.html")
+    person = Person.objects.prefetch_related("sections").order_by("id").first()
+    tech_sections = []
+    cert_sections = []
+
+    if person:
+        source_sections = person.sections.filter(type="techstack").order_by("order", "id")
+        tech_sections = [
+            {
+                "title": section.localized_title,
+                "items": section.skills_list,
+            }
+            for section in source_sections
+        ]
+
+        source_cert_sections = person.sections.filter(type="certificates").order_by("order", "id")
+        cert_sections = [
+            {
+                "title": profile.title,
+                "link": profile.content,
+            }
+            for profile in source_cert_sections
+        ]
+
+    return render(request, "index.html",
+                  {"tech_sections": tech_sections, "cert_sections": cert_sections})
 
 
 def portfolio(request):
@@ -95,3 +119,4 @@ def cv_pdf_view(request):
     # response['Content-Disposition'] = 'attachment; filename="CV_ITechMind.pdf"'
     # return response
     return HttpResponse(html_string)
+

@@ -46,25 +46,8 @@
   </form>
 
   <section id="quick-contact-contact" class="py-5">
-    <h2 class="mb-4 text-center">{% site_text "quick_contact.title" "Quick contact" %}</h2>
-    <div class="quick-contact-grid">
-      <a class="quick-contact-item" href="mailto:{% site_text 'quick_contact.email_href' 'kontakt@itechmind.pl' %}">
-        <img src="{% static 'img/email.svg' %}" alt="Email" class="contact-icon">
-        <span>{% site_text "quick_contact.email_label" "Email" %}</span>
-      </a>
-      <a class="quick-contact-item" href="tel:{% site_text 'quick_contact.phone_href' '+48123456789' %}">
-        <img src="{% static 'img/phone.svg' %}" alt="Phone" class="contact-icon">
-        <span>{% site_text "quick_contact.phone_label" "Phone" %}</span>
-      </a>
-      <a class="quick-contact-item" href="{% site_text 'quick_contact.github_href' 'https://github.com/your-profile' %}" target="_blank" rel="noopener noreferrer">
-        <img src="{% static 'img/github.svg' %}" alt="GitHub" class="contact-icon">
-        <span>GitHub</span>
-      </a>
-      <a class="quick-contact-item" href="{% site_text 'quick_contact.linkedin_href' 'https://www.linkedin.com/in/your-profile/' %}" target="_blank" rel="noopener noreferrer">
-        <img src="{% static 'img/linkedin.svg' %}" alt="LinkedIn" class="contact-icon">
-        <span>LinkedIn</span>
-      </a>
-    </div>
+    {% include "includes/quick_contact_content.html" %}
   </section>
 </div>
 {% endblock %}
+

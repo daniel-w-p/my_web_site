@@ -13,7 +13,7 @@
     <div class="cv-container">
         <header class="cv-header">
             {% if person.photo %}
-                <img src="{{ person.photo.url }}" alt="{{ person.first_name }} {{ person.last_name }}">
+                <img class="cv-img" src="{{ person.photo.url }}" alt="{{ person.first_name }} {{ person.last_name }}">
             {% endif %}
 
             <h1>{{ person.first_name }} {{ person.last_name }}</h1>
@@ -36,7 +36,7 @@
                                 <p>{{ item.localized_description|linebreaksbr }}</p>
                             </div>
                         {% endfor %}
-                    {% elif section.type == "skills" %}
+                    {% elif section.type == "skills" or section.type == "techstack" %}
                         <div class="skills">
                             <ul>
                             {% for skill in section.skills_list %}
@@ -53,3 +53,4 @@
     </div>
 </div>
 {% endblock %}
+

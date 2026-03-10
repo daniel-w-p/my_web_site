@@ -98,6 +98,7 @@ class CVSection(models.Model):
         ("experience", "Doswiadczenie"),
         ("education", "Wyksztalcenie"),
         ("skills", "Umiejetnosci"),
+        ("techstack", "Stos technologiczny"),
         ("projects", "Projekty"),
         ("certificates", "Certyfikaty"),
         ("languages", "Jezyki"),
@@ -177,3 +178,4 @@ class SiteText(models.Model):
     @property
     def localized_value(self) -> str:
         return _localized_value(self.value_pl, self.value_en)
+

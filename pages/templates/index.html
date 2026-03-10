@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 {% load site_text %}
 
 {% block title %}{% site_text "index.meta_title" "ITechMind - AI Specialist and Developer" %}{% endblock %}
@@ -8,18 +7,41 @@
 <section class="text-center py-5">
   <div class="container">
     <h1 class="display-4 fw-bold">{% site_text "index.hero_title" "Hello! This is ITechMind" %}</h1>
+    <h2 class="fw-bold">Daniel Poloczek</h2>
     <p class="lead text-secondary">{% site_text "index.hero_subtitle" "AI Specialist and Python / Django Developer" %}</p>
     <p>{% site_text "index.hero_description" "I help build modern IT systems and AI-powered solutions." %}</p>
     <a href="{% url 'portfolio' %}" class="btn hero-cta btn-lg">{% site_text "index.hero_cta" "See projects" %}</a>
   </div>
 </section>
 
-<section id="about" class="py-5">
+<section id="about" class="py-5 services-section">
   <div class="container">
     <h2 class="mb-4 text-center">{% site_text "index.about_title" "About me" %}</h2>
-    <p>{% site_text "index.about_body" "Short description of your experience, strengths and value for clients." %}</p>
+    <p>{% site_text "index.about_body1" "experience, strengths and value for clients." %}</p>
+    <p>{% site_text "index.about_body2" "experience, strengths and value for clients." %}</p>
+    <p>{% site_text "index.about_body3" "experience, strengths and value for clients." %}</p>
   </div>
 </section>
+
+{% if tech_sections %}
+<section id="tech-stack" class="py-5 services-section">
+  <div class="container tech-stack-wrap">
+    <h2 class="mb-4 text-center">{% site_text "index.tech_title" "Technologie i narzedzia" %}</h2>
+    <div class="tech-grid">
+      {% for section in tech_sections %}
+        <article class="tech-card">
+          <h3 class="tech-card-title">{{ section.title }}</h3>
+          <div class="tech-tags">
+            {% for item in section.items %}
+              <span class="tech-tag">{{ item }}</span>
+            {% endfor %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
 
 <section id="services" class="py-5 services-section">
   <div class="container">
@@ -53,27 +75,21 @@
   </div>
 </section>
 
-<section id="quick-contact" class="py-5">
+<section id="cert-profiles" class="py-5 services-section">
   <div class="container">
-    <h2 class="mb-4 text-center">{% site_text "quick_contact.title" "Quick contact" %}</h2>
-    <div class="quick-contact-grid">
-      <a class="quick-contact-item" href="mailto:{% site_text 'quick_contact.email_href' 'kontakt@itechmind.pl' %}">
-        <img src="{% static 'img/email.svg' %}" alt="Email" class="contact-icon">
-        <span>{% site_text "quick_contact.email_label" "Email" %}</span>
-      </a>
-      <a class="quick-contact-item" href="tel:{% site_text 'quick_contact.phone_href' '+48123456789' %}">
-        <img src="{% static 'img/phone.svg' %}" alt="Phone" class="contact-icon">
-        <span>{% site_text "quick_contact.phone_label" "Phone" %}</span>
-      </a>
-      <a class="quick-contact-item" href="{% site_text 'quick_contact.github_href' 'https://github.com/your-profile' %}" target="_blank" rel="noopener noreferrer">
-        <img src="{% static 'img/github.svg' %}" alt="GitHub" class="contact-icon">
-        <span>GitHub</span>
-      </a>
-      <a class="quick-contact-item" href="{% site_text 'quick_contact.linkedin_href' 'https://www.linkedin.com/in/your-profile/' %}" target="_blank" rel="noopener noreferrer">
-        <img src="{% static 'img/linkedin.svg' %}" alt="LinkedIn" class="contact-icon">
-        <span>LinkedIn</span>
-      </a>
+    <h2 class="mb-4 text-center">{% site_text "index.cert_profiles" "Certificates & profiles" %}</h2>
+    <div class="tech-grid">
+      {% for cert in cert_sections %}
+          <a class="quick-contact-item" href="{{ cert.link }}" target="_blank" rel="noopener noreferrer">{{ cert.title }}</a>
+      {% endfor %}
     </div>
   </div>
 </section>
+
+<section id="quick-contact" class="py-5">
+  <div class="container">
+    {% include "includes/quick_contact_content.html" %}
+  </div>
+</section>
 {% endblock %}
+
