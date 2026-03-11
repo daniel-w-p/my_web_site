@@ -35,9 +35,11 @@
                 <a href="{{ project.project_url }}" class="btn btn-sm btn-tech" target="_blank" rel="noopener noreferrer">{% site_text "portfolio.cta_project" "View project" %}</a>
               {% endif %}
             </div>
-            {% if project.localized_technologies %}
+            {% if project.skills_list %}
               <div class="card-footer text-muted">
-                {{ project.localized_technologies }}
+                {% for item in project.skills_list %}
+                  <span class="tech-tag">{{ item }}</span>
+                {% endfor %}
               </div>
             {% endif %}
           </div>

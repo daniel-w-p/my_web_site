@@ -57,6 +57,13 @@ class PortfolioProject(models.Model):
     def localized_technologies(self) -> str:
         return _localized_value(self.technologies_pl, self.technologies_en, self.technologies)
 
+    @property
+    def skills_list(self) -> list[str]:
+        content = self.localized_technologies
+        if not content:
+            return []
+        return [s.strip() for s in content.split(",") if s.strip()]
+
 
 class Person(models.Model):
     first_name = models.CharField(max_length=100)

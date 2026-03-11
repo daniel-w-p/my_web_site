@@ -25,6 +25,7 @@ db.sqlite3-journal
 local_settings.py
 media/
 static/img/
+static/portfolio_images/
 staticfiles/
 
 # Environment variables / secrets
