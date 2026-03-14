@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load site_text %}
+
+{% block title %}{% site_text "privacy.page_title" "Polityka prywatnosci" %}{% endblock %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">{% site_text "privacy.heading" "Polityka prywatnosci" %}</h1>
+
+    <div class="card p-4">
+      <h2 class="card-title">{% site_text "privacy.cookies_title" "Cookies" %}</h2>
+      <p>
+        {% site_text "cookies.notice" "Ta strona wykorzystuje wylacznie niezbedne pliki cookie, wymagane do jej poprawnego dzialania." %}
+      </p>
+      <p>
+        {% site_text "privacy.cookies" "Niezbedne cookies moga odpowiadac m.in. za utrzymanie sesji, preferencje jezyka oraz bezpieczenstwo formularzy." %}
+      </p>
+      <p>
+        {% site_text "privacy.no_marketing" "Serwis nie uzywa marketingowych ani analitycznych plikow cookie i nie zacznie ich używać bez Twojej wyraznej zgody." %}
+      </p>
+      <p class="mb-0">
+        {% site_text "privacy.contact" "W razie pytan dotyczacych prywatnosci skontaktuj sie przez formularz na stronie Kontakt." %}
+      </p>
+    </div>
+      <br>
+    <div class="card p-4">
+      <h2 class="card-title">{% site_text "privacy.data_title" "Dane osobowe" %}</h2>
+      <p>
+        {% site_text "data.admin" "Administratorem danych osobowych jest [Twoje imię i nazwisko / nazwa], kontakt: [adres e-mail]." %}
+      </p>
+      <p>
+        {% site_text "data.adding" "Dane podane w formularzu kontaktowym" %}
+      </p>
+      <p>
+        {% site_text "data.rights" "Masz prawo żądać dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, wniesienia sprzeciwu oraz złożenia skargi do Prezesa Urzędu Ochrony Danych Osobowych." %}
+      </p>
+      <p class="mb-0">
+        {% site_text "data.contact" "W sprawach dotyczących prywatności możesz skontaktować się z nami pod adresem: [e-mail]." %}
+      </p>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

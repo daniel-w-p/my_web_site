@@ -1,77 +1,227 @@
+section {
+  padding: 10px 0;
+  position: relative;
+}
+
 .cv-page {
-    font-family: Arial, sans-serif;
-    color: #333;
+  color: var(--text-main);
 }
 
 .cv-page .cv-container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .cv-page .cv-header {
-    text-align: center;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #eee;
+  text-align: center;
+  padding: 24px 20px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev-1));
 }
 
 .cv-page .cv-header .cv-img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--border);
 }
 
 .cv-page .cv-header h1 {
-    margin: 10px 0 0;
-    font-size: 2em;
+  margin: 12px 0 4px;
+  font-size: 2rem;
 }
 
 .cv-page .cv-header p {
-    margin: 5px 0;
-    font-size: 1em;
-    color: #777;
+  margin: 4px 0;
+  color: var(--text-muted);
 }
 
 .cv-page .cv-section {
-    margin-top: 30px;
+  margin-top: 24px;
 }
 
 .cv-page .section-title {
-    font-size: 1.3em;
-    font-weight: bold;
-    border-bottom: 2px solid #ddd;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
 }
 
 .cv-page .section-content {
-    margin-top: 10px;
+  display: block;
 }
 
-.cv-page .experience {
-    margin-bottom: 15px;
+.summary-content {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev-1));
+  padding: 16px;
 }
 
-.cv-page .experience .role {
-    font-weight: bold;
-    font-size: 1.1em;
+.summary-content p:last-child {
+  margin-bottom: 0;
 }
 
-.cv-page .experience .company {
-    font-style: italic;
-    color: #555;
+.cv-entry {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev-1));
+  padding: 14px;
 }
 
-.cv-page .skills ul {
-    list-style: none;
-    padding: 0;
+.cv-entry + .cv-entry {
+  margin-top: 10px;
 }
 
-.cv-page .skills li {
-    display: inline-block;
-    background: #f3f3f3;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 4px;
+.cv-entry-top {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cv-entry-title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.cv-entry-subtitle {
+  margin: 3px 0 0;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.cv-entry-dates {
+  white-space: nowrap;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.cv-entry-description {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+}
+
+.cv-inline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 7px;
+}
+
+.cv-inline-tags-bottom {
+  margin-top: 10px;
+}
+
+.cv-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cv-tech-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev-1));
+  padding: 12px;
+}
+
+.cv-tech-title {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.cv-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.cv-tech-tag {
+  border: 1px solid rgba(54, 209, 196, 0.33);
+  border-radius: 999px;
+  padding: 2px 9px;
+  font-size: 0.82rem;
+  background: rgba(31, 115, 108, 0.14);
+  line-height: 1.3;
+}
+
+.cv-cert-list {
+  display: grid;
+  gap: 10px;
+}
+
+.cv-cert-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev-1));
+  padding: 12px 14px;
+}
+
+.cv-cert-title {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.cv-cert-link,
+.cv-cert-text {
+  margin: 0;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cv-other-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.cv-page .section-content.cv-languages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.cv-other-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev-1));
+  padding: 12px;
+}
+
+.cv-other-title {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.cv-other-content {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 860px) {
+  .cv-page .cv-container {
+    padding: 12px;
+  }
+
+  .cv-tech-grid,
+  .cv-other-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .cv-entry-top {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cv-entry-dates {
+    white-space: normal;
+  }
 }

@@ -49,6 +49,38 @@
       {% endfor %}
     </div>
 
+    <div class="mt-5">
+      <h2 class="mb-4 text-center">{% site_text "portfolio.references_heading" "Referencje" %}</h2>
+      <div class="row g-4">
+        {% for reference in references %}
+          <div class="col-md-6">
+            <div class="card h-100 shadow-sm portfolio-card">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ reference.title }}</h5>
+                <p class="card-text">{{ reference.content|linebreaksbr }}</p>
+                {% if reference.reference_png_url %}
+                  <button type="button" class="btn btn-sm btn-tech align-self-start mb-3 reference-open" data-reference-src="{{ reference.reference_png_static_url }}">
+                    {% site_text "portfolio.references_cta" "Zobacz list referencyjny (PNG)" %}
+                  </button>
+                {% endif %}
+                <p class="mt-auto mb-0 text-muted"><strong>{{ reference.signature }}</strong></p>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <p class="text-center">{% site_text "portfolio.references_empty" "Brak referencji." %}</p>
+        {% endfor %}
+      </div>
+    </div>
+
   </div>
 </section>
+
+<div id="reference-modal" class="reference-modal" aria-hidden="true">
+  <button type="button" class="reference-modal-close" aria-label="Zamknij podglad">X</button>
+  <div class="reference-modal-stage">
+    <img id="reference-modal-image" src="" alt="List referencyjny">
+  </div>
+</div>
 {% endblock %}
+

@@ -103,10 +103,71 @@ function initPortfolioExpand() {
   });
 }
 
+function initReferencePreview() {
+  const modal = document.getElementById("reference-modal");
+  const image = document.getElementById("reference-modal-image");
+  if (!modal || !image) return;
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("reference-modal-open");
+    image.src = "";
+  };
+
+  document.addEventListener("click", (event) => {
+    const openBtn = event.target.closest(".reference-open");
+    if (openBtn) {
+      const src = openBtn.getAttribute("data-reference-src");
+      if (!src) return;
+      image.src = src;
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("reference-modal-open");
+      return;
+    }
+
+    if (event.target.closest(".reference-modal-close")) {
+      closeModal();
+      return;
+    }
+
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+}
+
+function initCookieBanner() {
+  const banner = document.getElementById("cookie-banner");
+  const acceptBtn = document.getElementById("cookie-accept");
+  if (!banner || !acceptBtn) return;
+
+  const storageKey = "cookie_notice_accepted_v1";
+  const isAccepted = localStorage.getItem(storageKey) === "1";
+  if (isAccepted) {
+    banner.classList.add("is-hidden");
+    return;
+  }
+
+  banner.classList.add("is-visible");
+
+  acceptBtn.addEventListener("click", () => {
+    localStorage.setItem(storageKey, "1");
+    banner.classList.remove("is-visible");
+    banner.classList.add("is-hidden");
+  });
+}
+
 (function () {
   const savedTheme = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  setThemeClass(savedTheme || (prefersDark ? "dark" : "light"));
+  setThemeClass(savedTheme || "dark");
 })();
 
 if (themeBtn) {
@@ -120,6 +181,8 @@ function initPage() {
   const initialLang = document.documentElement.lang || "pl";
   updateFlagIcon(initialLang);
   initPortfolioExpand();
+  initReferencePreview();
+  initCookieBanner();
 }
 
 if (document.readyState === "loading") {

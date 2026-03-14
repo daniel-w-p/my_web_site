@@ -1,4 +1,5 @@
 from django.db import models
+from django.templatetags.static import static
 from django.utils.translation import get_language
 
 
@@ -63,6 +64,31 @@ class PortfolioProject(models.Model):
         if not content:
             return []
         return [s.strip() for s in content.split(",") if s.strip()]
+
+
+class PortfolioReference(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    reference_png_url = models.CharField(max_length=200, blank=True)
+    signature = models.CharField(max_length=255)
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ["order", "id"]
+        verbose_name = "Referencja portfolio"
+        verbose_name_plural = "Referencje portfolio"
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def reference_png_static_url(self) -> str:
+        if not self.reference_png_url:
+            return ""
+        path = self.reference_png_url.strip()
+        if path.startswith(("http://", "https://")):
+            return path
+        return static(path.lstrip("/"))
 
 
 class Person(models.Model):

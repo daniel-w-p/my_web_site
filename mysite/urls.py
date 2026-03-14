@@ -18,5 +18,6 @@ urlpatterns += i18n_patterns(
     path("contact/", views.contact, name="contact"),
     path("portfolio/", views.portfolio, name="portfolio"),
     path("cv/", views.cv_view, name="cv"),
+    path("privacy-policy/", views.privacy_policy, name="privacy_policy"),
     prefix_default_language=False,
 )

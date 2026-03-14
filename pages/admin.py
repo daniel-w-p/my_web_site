@@ -6,6 +6,7 @@ from .models import (
     ExperienceItem,
     Person,
     PortfolioProject,
+    PortfolioReference,
     SiteText,
 )
 
@@ -58,6 +59,13 @@ class PortfolioAdmin(admin.ModelAdmin):
         "technologies_pl",
         "technologies_en",
     )
+    list_editable = ("order",)
+
+
+@admin.register(PortfolioReference)
+class PortfolioReferenceAdmin(admin.ModelAdmin):
+    list_display = ("title", "signature", "reference_png_url", "order")
+    search_fields = ("title", "content", "signature", "reference_png_url")
     list_editable = ("order",)
 
 

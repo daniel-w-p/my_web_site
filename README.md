@@ -19,34 +19,36 @@ Polish version: `README_PL.md`.
 - Django 6.x
 - SQLite (default local database)
 
-## Quick Start (Local)
+## Virtual Environment (venv)
 
-1. Create and activate a virtual environment.
+Create and activate a local virtual environment:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-2. Install dependencies.
+## Quick Start (Local)
+
+1. Install dependencies.
 
 ```powershell
-pip install "Django>=6,<7" Pillow
+pip install -r requirements.txt
 ```
 
-3. Run migrations.
+2. Run migrations.
 
 ```powershell
 python manage.py migrate
 ```
 
-4. (Optional) Create an admin user.
+3. (Optional) Create an admin user.
 
 ```powershell
 python manage.py createsuperuser
 ```
 
-5. Start the development server.
+4. Start the development server.
 
 ```powershell
 python manage.py runserver
@@ -98,3 +100,14 @@ mysite/
 - Before deployment:
   - rename `mysite/settings.py.example` to `mysite/settings.py` and adjust it to your environment,
   - set a secure `SECRET_KEY`, set `DEBUG=False`, and configure `ALLOWED_HOSTS`.
+
+## References & Licenses
+
+### Third-Party Software
+* **Django**: Web framework used by this project. Source: [django](https://www.djangoproject.com/). License: [BSD 3-Clause](https://docs.djangoproject.com/en/6.0/faq/general/).
+* **Bootstrap**: Frontend CSS/JS framework used for UI components and styling. Source: [Bootstrap](https://getbootstrap.com/). License: [MIT](https://getbootstrap.com/docs/5.0/about/license/).
+* **jQuery**: JavaScript library used for DOM manipulation and client-side interactions. Source: [jQuery](https://jquery.com/). License: [MIT](https://jquery.com/license/).
+* **Pillow**: Python imaging library used for image processing. Source: [Pillow](https://python-pillow.github.io/). License: [MIT-CMU / PIL Software License](https://pillow.readthedocs.io/en/stable/about.html).
+
+### License
+My original code in this repository is licensed under the **Apache 2.0 License**.

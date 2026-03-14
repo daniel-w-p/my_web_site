@@ -19,42 +19,44 @@ Wersja angielska: `README.md`.
 - Django 6.x
 - SQLite (domyślna baza lokalna)
 
-## Szybki start (lokalnie)
+## Virtual Environment (venv)
 
-1. Utw�rz i aktywuj środowisko wirtualne.
+Utwórz i aktywuj środowisko wirtualne:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-2. Zainstaluj zależności.
+## Quick Start (Local)
+
+1. Zainstaluj zależności.
 
 ```powershell
-pip install "Django>=6,<7" Pillow
+pip install -r requirements.txt
 ```
 
-3. Wykonaj migracje.
+2. Uruchom migracje.
 
 ```powershell
 python manage.py migrate
 ```
 
-4. (Opcjonalnie) utwórz konto administratora.
+3. (Opcjonalnie) Dodaj superużytkownika.
 
 ```powershell
 python manage.py createsuperuser
 ```
 
-5. Uruchom serwer developerski.
+4. Uruchom serwer lokalny.
 
 ```powershell
 python manage.py runserver
 ```
 
-Aplikacja będzie dostępna pod adresem `http://127.0.0.1:8000/`.
+Aplikacja będzie dostępna pod `http://127.0.0.1:8000/`.
 
-## G��wne endpointy
+## Główne endpointy
 
 - `/` - strona główna
 - `/portfolio/` - projekty portfolio
@@ -91,10 +93,21 @@ mysite/
 `- static/
 ```
 
-## Uwagi wdro�eniowe
+## Uwagi wdrożeniowe
 
 - `.gitignore` jest przygotowany pod Django/Python.
 - Domyślna konfiguracja używa `DEBUG=True` (tryb developerski).
 - Przed wdrożeniem:
   - zmień nazwę `mysite/settings.py.example` na `mysite/settings.py` i dostosuj konfigurację do środowiska,
   - ustaw bezpieczny `SECRET_KEY`, ustaw `DEBUG=False` oraz skonfiguruj `ALLOWED_HOSTS`.
+
+## References & Licenses
+
+### Third-Party Software
+* **Django**: Web framework used by this project. Source: [django](https://www.djangoproject.com/). License: [BSD 3-Clause](https://docs.djangoproject.com/en/6.0/faq/general/).
+* **Bootstrap**: Frontend CSS/JS framework used for UI components and styling. Source: [Bootstrap](https://getbootstrap.com/). License: [MIT](https://getbootstrap.com/docs/5.0/about/license/).
+* **jQuery**: JavaScript library used for DOM manipulation and client-side interactions. Source: [jQuery](https://jquery.com/). License: [MIT](https://jquery.com/license/).
+* **Pillow**: Python imaging library used for image processing. Source: [Pillow](https://python-pillow.github.io/). License: [MIT-CMU / PIL Software License](https://pillow.readthedocs.io/en/stable/about.html).
+
+### Licencja
+Utworzony przeze mnie kod w tym repozytorium jest objęty licencją: **Apache 2.0 License**.

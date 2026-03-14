@@ -88,7 +88,7 @@ DEFAULT_SITE_TEXTS = [
     ("contact.label_message", "Wiadomosc", "Message", "Contact form label"),
     ("contact.submit", "Wyslij", "Send", "Contact form button"),
     ("cv.page_title", "CV", "CV", "CV page title"),
-    ("cv.today", "dzis", "today", "CV open-ended date label"),
+    ("cv.today", "dziś", "today", "CV open-ended date label"),
     ("quick_contact.title", "Szybki kontakt", "Quick contact", "Quick contact section title"),
     ("quick_contact.email_label", "Email", "Email", "Quick contact item label"),
     ("quick_contact.phone_label", "Telefon", "Phone", "Quick contact item label"),

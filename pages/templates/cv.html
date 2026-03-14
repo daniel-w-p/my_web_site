@@ -22,35 +22,163 @@
             <p>{{ person.localized_location }}</p>
         </header>
 
-        {% for section in sections %}
+        {% if summary_sections %}
             <section class="cv-section">
-                <div class="section-title">{{ section.localized_title }}</div>
-                <div class="section-content">
-                    {% if section.type == "experience" %}
-                        {% for item in section.experience_items.all %}
-                            <div class="experience">
-                                <div class="role">{{ item.localized_position }}</div>
-                                <div class="company">
-                                    {{ item.company }} | {{ item.start_date }} - {{ item.end_date|default_if_none:today_label }}
-                                </div>
-                                <p>{{ item.localized_description|linebreaksbr }}</p>
-                            </div>
-                        {% endfor %}
-                    {% elif section.type == "skills" or section.type == "techstack" %}
-                        <div class="skills">
-                            <ul>
-                            {% for skill in section.skills_list %}
-                                <li>{{ skill }}</li>
-                            {% endfor %}
-                            </ul>
-                        </div>
-                    {% else %}
-                        {{ section.localized_content|safe }}
-                    {% endif %}
+                <div class="section-content summary-content">
+                    {% for section in summary_sections %}
+                        <p>{{ section.localized_content|linebreaksbr }}</p>
+                    {% endfor %}
                 </div>
             </section>
-        {% endfor %}
+        {% endif %}
+
+        {% if experience_entries %}
+            <section class="cv-section">
+                <div class="section-title">{{ cv_headings.experience }}</div>
+                <div class="section-content">
+                    {% for item in experience_entries %}
+                        <article class="cv-entry cv-entry-experience">
+                            <div class="cv-entry-top">
+                                <div class="cv-entry-main">
+                                    <h3 class="cv-entry-title">{{ item.position }}</h3>
+                                    {% if item.position_tags %}
+                                        <div class="cv-inline-tags">
+                                            {% for tag in item.position_tags %}
+                                                <span class="cv-tech-tag">{{ tag }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                    {% if item.company %}
+                                        <p class="cv-entry-subtitle">{{ item.company }}</p>
+                                    {% endif %}
+                                </div>
+                                {% if item.start_date or item.end_date %}
+                                    <div class="cv-entry-dates">
+                                        {{ item.start_date|date:"m.Y"|default:"" }} - {{ item.end_date|date:"m.Y"|default:today_label }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            {% if item.description %}
+                                <p class="cv-entry-description">{{ item.description|linebreaksbr }}</p>
+                            {% endif %}
+                            {% if item.description_tags %}
+                                <div class="cv-inline-tags cv-inline-tags-bottom">
+                                    {% for tag in item.description_tags %}
+                                        <span class="cv-tech-tag">{{ tag }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </article>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+
+        {% if education_entries %}
+            <section class="cv-section">
+                <div class="section-title">{{ cv_headings.education }}</div>
+                <div class="section-content">
+                    {% for item in education_entries %}
+                        <article class="cv-entry cv-entry-education">
+                            <div class="cv-entry-top">
+                                <div class="cv-entry-main">
+                                    <h3 class="cv-entry-title">{{ item.title }}</h3>
+                                    {% if item.institution %}
+                                        <p class="cv-entry-subtitle">{{ item.institution }}</p>
+                                    {% endif %}
+                                </div>
+                                {% if item.start_date or item.end_date %}
+                                    <div class="cv-entry-dates">
+                                        {{ item.start_date|date:"m.Y"|default:"" }} - {{ item.end_date|date:"m.Y"|default:today_label }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            {% if item.description %}
+                                <p class="cv-entry-description">{{ item.description|linebreaksbr }}</p>
+                            {% endif %}
+                        </article>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+
+        {% if tech_sections %}
+            <section class="cv-section">
+                <div class="section-title">{{ cv_headings.tech }}</div>
+                <div class="section-content">
+                    <div class="cv-tech-grid">
+                        {% for group in tech_sections %}
+                            <article class="cv-tech-card">
+                                <h3 class="cv-tech-title">{{ group.title }}</h3>
+                                <div class="cv-tech-tags">
+                                    {% for item in group.items %}
+                                        <span class="cv-tech-tag">{{ item }}</span>
+                                    {% endfor %}
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
+        {% if certificate_sections %}
+            <section class="cv-section">
+                <div class="section-title">{{ cv_headings.certificates }}</div>
+                <div class="section-content">
+                    <div class="cv-cert-list">
+                        {% for item in certificate_sections %}
+                            <article class="cv-cert-card">
+                                <h3 class="cv-cert-title">{{ item.title }}</h3>
+                                {% if item.is_url %}
+                                    <a href="{{ item.link }}" class="cv-cert-link" target="_blank" rel="noopener noreferrer">{{ item.link }}</a>
+                                {% elif item.link %}
+                                    <p class="cv-cert-text">{{ item.link }}</p>
+                                {% else %}
+                                    <p class="cv-cert-text">-</p>
+                                {% endif %}
+                            </article>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
+        {% if language_sections %}
+            <section class="cv-section">
+                <div class="section-title">{{ cv_headings.languages }}</div>
+                <div class="section-content cv-languages-grid">
+                    {% for section in language_sections %}
+                        <article class="cv-other-card">
+                            <h3 class="cv-other-title">{{ section.localized_title }}</h3>
+                            <div class="cv-other-content">{{ section.localized_content|linebreaksbr }}</div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+
+        {% if other_sections %}
+            <section class="cv-section">
+                <div class="section-title">{{ cv_headings.other }}</div>
+                <div class="section-content cv-other-grid">
+                    {% for section in other_sections %}
+                        <article class="cv-other-card">
+                            <h3 class="cv-other-title">{{ section.localized_title }}</h3>
+                            <div class="cv-other-content">{{ section.localized_content|linebreaksbr }}</div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+
+        {% if not summary_sections and not experience_entries and not education_entries and not tech_sections and not certificate_sections and not language_sections and not other_sections %}
+            <section class="cv-section">
+                <div class="section-content">
+                    <p>{{ cv_headings.empty }}</p>
+                </div>
+            </section>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
-
