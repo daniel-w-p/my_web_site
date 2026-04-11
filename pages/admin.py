@@ -4,6 +4,7 @@ from .models import (
     ContactMessage,
     CVSection,
     ExperienceItem,
+    OfferItem,
     Person,
     PortfolioProject,
     PortfolioReference,
@@ -67,6 +68,21 @@ class PortfolioReferenceAdmin(admin.ModelAdmin):
     list_display = ("title", "signature", "reference_png_url", "order")
     search_fields = ("title", "content", "signature", "reference_png_url")
     list_editable = ("order",)
+
+
+@admin.register(OfferItem)
+class OfferItemAdmin(admin.ModelAdmin):
+    list_display = ("slot", "localized_title", "image_url")
+    search_fields = (
+        "title",
+        "title_pl",
+        "title_en",
+        "content",
+        "content_pl",
+        "content_en",
+        "image_url",
+    )
+    ordering = ("slot",)
 
 
 @admin.register(SiteText)

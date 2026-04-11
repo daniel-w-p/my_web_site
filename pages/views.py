@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
 
 from pages.forms import ContactMessageForm
-from pages.models import CVSection, Person, PortfolioProject, PortfolioReference
+from pages.models import CVSection, OfferItem, Person, PortfolioProject, PortfolioReference
 from pages.utils import get_site_text
 
 
@@ -61,6 +61,12 @@ def portfolio(request):
     projects = PortfolioProject.objects.order_by("order", "id")
     references = PortfolioReference.objects.order_by("order", "id")
     return render(request, "portfolio.html", {"projects": projects, "references": references})
+
+
+def offer(request):
+    cards_by_slot = {item.slot: item for item in OfferItem.objects.order_by("slot", "id")}
+    offer_cards = [cards_by_slot.get(slot) for slot in range(1, 5)]
+    return render(request, "offer.html", {"offer_cards": offer_cards})
 
 
 def contact(request):

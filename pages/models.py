@@ -91,6 +91,50 @@ class PortfolioReference(models.Model):
         return static(path.lstrip("/"))
 
 
+class OfferItem(models.Model):
+    SLOT_CHOICES = [
+        (1, "1"),
+        (2, "2"),
+        (3, "3"),
+        (4, "4"),
+        (5, "5"),
+    ]
+
+    slot = models.PositiveSmallIntegerField(choices=SLOT_CHOICES, unique=True)
+    title = models.CharField(max_length=200)
+    title_pl = models.CharField(max_length=200, blank=True)
+    title_en = models.CharField(max_length=200, blank=True)
+    content = models.TextField()
+    content_pl = models.TextField(blank=True)
+    content_en = models.TextField(blank=True)
+    image_url = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        ordering = ["slot", "id"]
+        verbose_name = "Element oferty"
+        verbose_name_plural = "Elementy oferty"
+
+    def __str__(self):
+        return f"{self.slot}. {self.title}"
+
+    @property
+    def localized_title(self) -> str:
+        return _localized_value(self.title_pl, self.title_en, self.title)
+
+    @property
+    def localized_content(self) -> str:
+        return _localized_value(self.content_pl, self.content_en, self.content)
+
+    @property
+    def image_static_url(self) -> str:
+        if not self.image_url:
+            return ""
+        path = self.image_url.strip()
+        if path.startswith(("http://", "https://")):
+            return path
+        return static(path.lstrip("/"))
+
+
 class Person(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -211,4 +255,3 @@ class SiteText(models.Model):
     @property
     def localized_value(self) -> str:
         return _localized_value(self.value_pl, self.value_en)
-

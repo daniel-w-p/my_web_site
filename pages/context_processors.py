@@ -8,6 +8,7 @@ def seo_meta(request):
 
     title_by_view = {
         "index": get_site_text("index.hero_subtitle", "ITechMind - AI Specialist and Developer"),
+        "offer": get_site_text("offer.page_title", "Oferta"),
         "portfolio": get_site_text("portfolio.page_title", "Portfolio"),
         "contact": get_site_text("contact.page_title", "Contact"),
         "cv": get_site_text("cv.page_title", "CV"),
@@ -17,6 +18,10 @@ def seo_meta(request):
         "index": get_site_text(
             "index.meta_description",
             "Portfolio, CV and contact page for AI and Python/Django development services.",
+        ),
+        "offer": get_site_text(
+            "offer.meta_description",
+            "Zakres uslug i modele wspolpracy w obszarze AI oraz Python/Django.",
         ),
         "portfolio": get_site_text(
             "portfolio.meta_description",

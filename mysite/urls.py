@@ -15,6 +15,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
+    path("offer/", views.offer, name="offer"),
     path("contact/", views.contact, name="contact"),
     path("portfolio/", views.portfolio, name="portfolio"),
     path("cv/", views.cv_view, name="cv"),

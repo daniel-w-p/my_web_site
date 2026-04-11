@@ -2,7 +2,7 @@
 {% load static %}
 {% load site_text %}
 <!DOCTYPE html>
-<html lang="{{ request.LANGUAGE_CODE|default:"pl" }}">
+<html lang="{{ request.LANGUAGE_CODE|default:'pl' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1.0.0">
     {% block extra_head %}{% endblock %}
 </head>
 
@@ -58,6 +58,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'portfolio' %}">{% site_text "nav.portfolio" "Portfolio" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'offer' %}">{% site_text "nav.offer" "Oferta" %}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contact' %}">{% site_text "nav.contact" "Contact" %}</a>
@@ -105,6 +108,8 @@
         <a href="{% url 'index' %}#services">{% site_text "nav.services" "Services" %}</a>
         <span class="footer-sep">|</span>
         <a href="{% url 'portfolio' %}">{% site_text "nav.portfolio" "Portfolio" %}</a>
+        <span class="footer-sep">|</span>
+        <a href="{% url 'offer' %}">{% site_text "nav.offer" "Oferta" %}</a>
         <span class="footer-sep">|</span>
         <a href="{% url 'contact' %}">{% site_text "nav.contact" "Contact" %}</a>
         <span class="footer-sep">|</span>

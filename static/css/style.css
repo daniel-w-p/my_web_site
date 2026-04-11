@@ -210,6 +210,10 @@ body.light-mode .services-section {
   transition: transform 0.22s ease;
 }
 
+.service-card-link {
+  z-index: 3;
+}
+
 .service-card:hover .card-body,
 .portfolio-card:hover .card-body {
   transform: none;
@@ -234,6 +238,12 @@ body.light-mode .services-section {
 
 .portfolio-card .card-img-top {
   transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.offer-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
 }
 
 .portfolio-card:hover .card-img-top {
@@ -353,7 +363,7 @@ footer {
 
 .tech-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 20px;
 }
 
