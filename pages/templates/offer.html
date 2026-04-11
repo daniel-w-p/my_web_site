@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load site_text %}
+
+{% block title %}{% site_text "offer.page_title" "Oferta" %}{% endblock %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-3 text-center">{% site_text "offer.heading" "Oferta" %}</h1>
+    <p class="text-center mb-4">{% site_text "offer.subtitle" "Zakres wsparcia i modele wspolpracy." %}</p>
+
+    <div class="row g-4">
+      {% for card in offer_cards %}
+        <div class="col-md-6">
+          <article class="card h-100 shadow-sm portfolio-card offer-card">
+            {% if card and card.image_static_url %}
+              <img src="{{ card.image_static_url }}" class="card-img-top offer-image" alt="{{ card.localized_title }}">
+            {% endif %}
+            <div class="card-body">
+              {% if card %}
+                <h5 class="card-title">{{ card.localized_title }}</h5>
+                <p class="card-text">{{ card.localized_content|linebreaksbr }}</p>
+              {% else %}
+                <h5 class="card-title">{% site_text "offer.empty_title" "Pozycja oferty do uzupelnienia" %}</h5>
+                <p class="card-text">{% site_text "offer.empty_body" "Dodaj tresc i obraz tej karty w panelu administratora." %}</p>
+              {% endif %}
+            </div>
+          </article>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
