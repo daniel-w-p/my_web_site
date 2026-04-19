@@ -73,6 +73,49 @@
       </div>
     </div>
 
+    <div class="mt-5">
+      <h2 class="mb-4 text-center">{% site_text "portfolio.codex_heading" "Ciekawe projekty z Codex" %}</h2>
+      <div id="codex-portfolio-grid" class="row g-4 portfolio-grid">
+        {% for project in codex_projects %}
+          <div class="{{ codex_col_class }} portfolio-item">
+            <div class="card h-100 shadow-sm portfolio-card">
+              {% if project.image %}
+                {% with img_name=project.image.name %}
+                <div class="portfolio-image-wrap">
+                  <img
+                    src="{% static img_name %}"
+                    class="card-img-top portfolio-preview"
+                    alt="{{ project.localized_title }}"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Expand image: {{ project.localized_title }}"
+                  >
+                  <button type="button" class="portfolio-close" aria-label="Close expanded image">X</button>
+                </div>
+                {% endwith %}
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ project.localized_title }}</h5>
+                <p class="card-text">{{ project.localized_description }}</p>
+                {% if project.project_url %}
+                  <a href="{{ project.project_url }}" class="btn btn-sm btn-tech" target="_blank" rel="noopener noreferrer">{% site_text "portfolio.cta_project" "View project" %}</a>
+                {% endif %}
+              </div>
+              {% if project.skills_list %}
+                <div class="card-footer text-muted">
+                  {% for item in project.skills_list %}
+                    <span class="tech-tag">{{ item }}</span>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% empty %}
+          <p class="text-center">{% site_text "portfolio.codex_empty" "Brak projektow Codex." %}</p>
+        {% endfor %}
+      </div>
+    </div>
+
   </div>
 </section>
 

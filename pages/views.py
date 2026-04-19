@@ -58,9 +58,23 @@ def index(request):
 
 
 def portfolio(request):
-    projects = PortfolioProject.objects.order_by("order", "id")
+    projects = PortfolioProject.objects.filter(is_comercial=True).order_by("order", "id")
+    codex_projects = PortfolioProject.objects.exclude(is_comercial=True).order_by("order", "id")
+    codex_count = codex_projects.count()
+    codex_col_class = "col-md-6 col-lg-4"
+    if codex_count in {2, 4}:
+        codex_col_class = "col-md-6"
     references = PortfolioReference.objects.order_by("order", "id")
-    return render(request, "portfolio.html", {"projects": projects, "references": references})
+    return render(
+        request,
+        "portfolio.html",
+        {
+            "projects": projects,
+            "codex_projects": codex_projects,
+            "codex_col_class": codex_col_class,
+            "references": references,
+        },
+    )
 
 
 def offer(request):

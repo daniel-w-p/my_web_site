@@ -36,6 +36,7 @@ class PortfolioProject(models.Model):
     technologies_en = models.CharField(max_length=200, blank=True)
     project_url = models.URLField(blank=True)
     image = models.ImageField(upload_to="portfolio_images/", blank=True)
+    is_comercial = models.BooleanField(null=True, blank=True, default=None)
     order = models.IntegerField(default=0)
 
     def __str__(self):

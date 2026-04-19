@@ -44,18 +44,19 @@ function updateFlagIcon(activeLang) {
 }
 
 function initPortfolioExpand() {
-  const grid = document.getElementById("portfolio-grid");
-  if (!grid) return;
-
-  const items = Array.from(grid.querySelectorAll(".portfolio-item"));
+  const grids = Array.from(document.querySelectorAll(".portfolio-grid"));
+  if (!grids.length) return;
 
   const closeAll = () => {
-    grid.classList.remove("has-expanded");
+    grids.forEach((grid) => {
+      grid.classList.remove("has-expanded");
+      const items = Array.from(grid.querySelectorAll(".portfolio-item"));
+      items.forEach((item) => item.classList.remove("is-expanded"));
+    });
     document.body.classList.remove("portfolio-expanded");
-    items.forEach((item) => item.classList.remove("is-expanded"));
   };
 
-  const expandItem = (item) => {
+  const expandItem = (grid, item) => {
     const alreadyExpanded = item.classList.contains("is-expanded");
     closeAll();
     if (!alreadyExpanded) {
@@ -66,34 +67,36 @@ function initPortfolioExpand() {
     }
   };
 
-  grid.addEventListener("click", (event) => {
-    const closeBtn = event.target.closest(".portfolio-close");
-    if (closeBtn) {
+  grids.forEach((grid) => {
+    grid.addEventListener("click", (event) => {
+      const closeBtn = event.target.closest(".portfolio-close");
+      if (closeBtn) {
+        event.preventDefault();
+        closeAll();
+        return;
+      }
+
+      const preview = event.target.closest(".portfolio-preview");
+      if (!preview) return;
+
+      const item = preview.closest(".portfolio-item");
+      if (item) {
+        expandItem(grid, item);
+      }
+    });
+
+    grid.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+
+      const preview = event.target.closest(".portfolio-preview");
+      if (!preview) return;
+
       event.preventDefault();
-      closeAll();
-      return;
-    }
-
-    const preview = event.target.closest(".portfolio-preview");
-    if (!preview) return;
-
-    const item = preview.closest(".portfolio-item");
-    if (item) {
-      expandItem(item);
-    }
-  });
-
-  grid.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
-
-    const preview = event.target.closest(".portfolio-preview");
-    if (!preview) return;
-
-    event.preventDefault();
-    const item = preview.closest(".portfolio-item");
-    if (item) {
-      expandItem(item);
-    }
+      const item = preview.closest(".portfolio-item");
+      if (item) {
+        expandItem(grid, item);
+      }
+    });
   });
 
   document.addEventListener("keydown", (event) => {

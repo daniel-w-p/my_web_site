@@ -48,7 +48,8 @@ class ExperienceItemAdmin(admin.ModelAdmin):
 
 @admin.register(PortfolioProject)
 class PortfolioAdmin(admin.ModelAdmin):
-    list_display = ("localized_title", "localized_technologies", "project_url", "order")
+    list_display = ("localized_title", "is_comercial", "localized_technologies", "project_url", "order")
+    list_filter = ("is_comercial",)
     search_fields = (
         "title",
         "title_pl",
@@ -60,7 +61,7 @@ class PortfolioAdmin(admin.ModelAdmin):
         "technologies_pl",
         "technologies_en",
     )
-    list_editable = ("order",)
+    list_editable = ("is_comercial", "order")
 
 
 @admin.register(PortfolioReference)
