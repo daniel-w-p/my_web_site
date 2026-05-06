@@ -7,6 +7,7 @@ function setThemeClass(theme) {
   document.body.classList.add(theme + "-mode");
   localStorage.setItem("theme", theme);
   updateThemeIcon(theme);
+  updateBrandLogo(theme);
 }
 
 function updateThemeIcon(theme) {
@@ -21,6 +22,18 @@ function updateThemeIcon(theme) {
   } else {
     icon.classList.add("bi-moon-stars-fill");
     icon.title = "Switch to dark mode";
+  }
+}
+
+function updateBrandLogo(theme) {
+  const logo = document.querySelector(".brand-logo");
+  if (!logo) return;
+
+  const nextSrc =
+    theme === "light" ? logo.dataset.logoLight : logo.dataset.logoDark;
+
+  if (nextSrc) {
+    logo.src = nextSrc;
   }
 }
 

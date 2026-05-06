@@ -45,7 +45,7 @@ def seo_meta(request):
     seo_description = description_by_view.get(url_name, description_by_view["index"])
     base_url = f"{request.scheme}://{request.get_host()}"
     seo_url = f"{base_url}{request.path}"
-    seo_image = f"{base_url}{static('img/logo.png')}"
+    seo_image = f"{base_url}{static('img/seo_image.png')}"
     lang = (getattr(request, "LANGUAGE_CODE", "") or "pl").lower()
     og_locale = "en_US" if lang.startswith("en") else "pl_PL"
 
